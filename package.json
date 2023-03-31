@@ -7,12 +7,25 @@
     "type": "git",
     "url": "git+https://github.com/lapo-luchini/asn1js.git"
   },
-  "keywords": [ "asn1", "ber", "der", "pem" ],
+  "keywords": [
+    "asn1",
+    "ber",
+    "der",
+    "pem"
+  ],
   "author": "Lapo Luchini <lapo@lapo.it>",
   "license": "ISC",
-  "bugs": { "url": "https://github.com/lapo-luchini/asn1js/issues" },
+  "bugs": {
+    "url": "https://github.com/lapo-luchini/asn1js/issues"
+  },
   "homepage": "https://lapo.it/asn1js/",
-  "files": [ "asn1.js", "base64.js", "hex.js", "int10.js", "oids.js" ],
+  "files": [
+    "asn1.js",
+    "base64.js",
+    "hex.js",
+    "int10.js",
+    "oids.js"
+  ],
   "scripts": {
     "lint": "npx eslint asn1.js base64.js hex.js int10.js oids.js tags.js index.js parseRFC.js dumpASN1.js",
     "lint-action": "npx @action-validator/cli .github/workflows/node.js.yml",
@@ -31,42 +44,106 @@
       "browser": true,
       "node": true
     },
-    "extends": [ "eslint:recommended" ],
+    "extends": [
+      "eslint:recommended"
+    ],
     "globals": {
       "Uint8Array": "readonly"
     },
     "rules": {
-      "strict": [ "error", "function" ],
-      "indent": [ "error", 4, { "ignoredNodes": [ "Program > ExpressionStatement > CallExpression > FunctionExpression > BlockStatement > ExpressionStatement[directive='use strict']:first-child" ] } ],
-      "linebreak-style": [ "error", "unix" ],
-      "semi": [ "warn", "always" ],
-      "quotes": [ "error", "single", { "avoidEscape": true } ],
-      "no-var": [ "warn" ],
-      "comma-dangle": [ "error", "never" ]
+      "strict": [
+        "error",
+        "function"
+      ],
+      "indent": [
+        "error",
+        4,
+        {
+          "ignoredNodes": [
+            "Program > ExpressionStatement > CallExpression > FunctionExpression > BlockStatement > ExpressionStatement[directive='use strict']:first-child"
+          ]
+        }
+      ],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "semi": [
+        "warn",
+        "always"
+      ],
+      "quotes": [
+        "error",
+        "single",
+        {
+          "avoidEscape": true
+        }
+      ],
+      "no-var": [
+        "warn"
+      ],
+      "comma-dangle": [
+        "error",
+        "never"
+      ]
     },
     "overrides": [
       {
-        "files": [ "test.js", "parseRFC.js", "dumpASN1.js" ],
+        "files": [
+          "test.js",
+          "parseRFC.js",
+          "dumpASN1.js"
+        ],
         "parserOptions": {
           "ecmaVersion": 2021
         },
         "rules": {
-          "strict": [ "error", "global" ],
-          "comma-dangle": [ "error", "always-multiline" ]
+          "strict": [
+            "error",
+            "global"
+          ],
+          "comma-dangle": [
+            "error",
+            "always-multiline"
+          ]
         }
-      }, {
-        "files": [ "oids.js" ],
+      },
+      {
+        "files": [
+          "oids.js"
+        ],
         "rules": {
           "indent": "off",
-          "quotes": [ "warn", "double" ]
+          "quotes": [
+            "warn",
+            "double"
+          ]
         }
-      }, {
-        "files": [ "tags.js" ],
+      },
+      {
+        "files": [
+          "tags.js"
+        ],
         "rules": {
-          "comma-dangle": [ "error", "always-multiline" ],
-          "quotes": [ "warn", "double" ]
+          "comma-dangle": [
+            "error",
+            "always-multiline"
+          ],
+          "quotes": [
+            "warn",
+            "double"
+          ]
         }
       }
     ]
+  },
+  "dependencies": {
+    "@lapo/asn1js": "^1.2.4",
+    "brfs": "^2.0.2",
+    "browserify-fs": "^1.0.0",
+    "file-class": "^0.1.3",
+    "filereader": "^0.10.3",
+    "jsdom": "^21.1.1",
+    "node-localstorage": "^2.2.1"
   }
 }

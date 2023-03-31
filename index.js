@@ -1,3 +1,4 @@
+
 (typeof define != 'undefined' ? define : function (factory) { 'use strict';
     if (typeof module == 'object') factory(function (name) { return require(name); });
     else factory(function (name) { return window[name.substring(2)]; });
@@ -45,6 +46,7 @@ function checkbox(name) {
 function show(asn1) {
     tree.innerHTML = '';
     dump.innerHTML = '';
+    console.log(asn1.toDOM());
     tree.appendChild(asn1.toDOM());
     if (wantHex.checked) dump.appendChild(asn1.toHexDOM());
 }

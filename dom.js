@@ -140,6 +140,62 @@ class ASN1DOM extends ASN1 {
         };
         return node;
     }
+
+    getInfo(){
+        let isOID = (typeof oids === 'object') && (this.tag.isUniversal() && (this.tag.tagNumber == 0x06) || (this.tag.tagNumber == 0x0D));
+        let groupType = this.typeName().replace(/_/g, ' ');
+
+        let id = (this.def && this.def.id) ? this.def.id: null;
+        let content = this.content(contentLength);
+        let oid;
+        let oidd;
+        let oidc;
+        if (content !== null) {
+            let shortContent;
+            if (isOID) content = content.split('\n', 1)[0];
+            shortContent = (content.length > lineLength) ? content.substring(0, lineLength) + DOM.ellipsis: content;
+            if (isOID){
+                oid = oids[content];
+                if (oid) {
+                    if (oid.d) {
+                        oidd = oid.d;
+                    }
+                    if (oid.c) {
+                        oidc = oid.c;
+                    }
+                }
+            }
+        }
+        return [groupType, id, content, oidd, oidc]
+    }
+
+    getAllInfo(results){
+        if (this !== null) {
+            if (this instanceof ASN1DOM){
+                let header = this.getInfo();
+                results.push(header);
+                let sub = this.sub;
+                if (sub instanceof ASN1DOM){
+                    sub.getAllInfo(results)
+                } else if (Array.isArray(sub)){
+                    for (let i = 0, max=sub.length; i < max; ++i){
+                        sub[i].getAllInfo(results)
+                    }
+                }
+            };
+        }
+ 
+        return results
+    }
+
+    toVText(spaces) {
+        let results = [];
+        let body = this.getAllInfo(results);
+        // console.log(body.slice(1, 4));
+        // console.log(body[3]);
+        console.log(body);
+    }
+
     fakeHover(current) {
         this.node.className += ' hover';
         if (current)
